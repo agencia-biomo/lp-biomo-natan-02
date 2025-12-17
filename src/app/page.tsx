@@ -1,21 +1,24 @@
-import Hero from "@/components/ui/neural-network-hero";
+import { ShaderBackground, HeroContent, Header } from "@/components/ui/shaders-hero-section";
 import { Monitor, TrendingUp, Target, MessageCircle, Shield, Zap, Users } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="w-screen min-h-screen flex flex-col relative bg-black">
-      {/* Hero Section with Neural Network Shader */}
-      <Hero
-        title="Transformamos sua presença digital em resultados reais"
-        description="Agência de Marketing Digital Full Service com Garantia Total de satisfação. Sites profissionais, SEO e Tráfego Pago que convertem."
-        badgeText="Marketing Digital"
-        badgeLabel="Biomo"
-        ctaButtons={[
-          { text: "Solicitar Orçamento", href: "#contato", primary: true },
-          { text: "Ver Resultados", href: "#resultados" }
-        ]}
-        microDetails={["+150 Projetos", "98% Satisfação", "5+ Anos"]}
-      />
+      {/* Hero Section with Mesh Gradient Shader */}
+      <ShaderBackground>
+        <Header />
+        <HeroContent
+          title="Transformamos sua presença digital em resultados reais"
+          description="Agência de Marketing Digital Full Service com Garantia Total de satisfação. Sites profissionais, SEO e Tráfego Pago que convertem."
+          badgeText="Marketing Digital"
+          badgeLabel="Biomo"
+          ctaButtons={[
+            { text: "Solicitar Orçamento", href: "#contato", primary: true },
+            { text: "Ver Resultados", href: "#resultados" }
+          ]}
+          microDetails={["+150 Projetos", "98% Satisfação", "5+ Anos"]}
+        />
+      </ShaderBackground>
 
       {/* Services Section */}
       <section id="servicos" className="relative z-10 py-24 px-6 md:px-10 lg:px-16 bg-black/95">
