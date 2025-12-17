@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo, useEffect, useState } from 'react';
+import { useRef, useMemo } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -249,74 +249,75 @@ export default function Hero({
   const ctaRef = useRef<HTMLDivElement | null>(null);
   const badgeRef = useRef<HTMLDivElement | null>(null);
   const microRef = useRef<HTMLUListElement | null>(null);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const microItem1Ref = useRef<HTMLLIElement | null>(null);
+  const microItem2Ref = useRef<HTMLLIElement | null>(null);
+  const microItem3Ref = useRef<HTMLLIElement | null>(null);
 
   useGSAP(
     () => {
-      if (!headerRef.current || !isClient) return;
+      if (!headerRef.current) return;
 
-      // Simple animation without SplitText
-      gsap.set(headerRef.current, {
-        filter: 'blur(16px)',
-        y: 30,
-        autoAlpha: 0,
-        scale: 1.06,
-        transformOrigin: '50% 100%',
+      document.fonts.ready.then(() => {
+        // Alternative to SplitText - animate the whole heading
+        gsap.set(headerRef.current, {
+          filter: 'blur(16px)',
+          yPercent: 30,
+          autoAlpha: 0,
+          scale: 1.06,
+          transformOrigin: '50% 100%',
+        });
+
+        if (badgeRef.current) {
+          gsap.set(badgeRef.current, { autoAlpha: 0, y: -8 });
+        }
+        if (paraRef.current) {
+          gsap.set(paraRef.current, { autoAlpha: 0, y: 8 });
+        }
+        if (ctaRef.current) {
+          gsap.set(ctaRef.current, { autoAlpha: 0, y: 8 });
+        }
+        const microItems = [microItem1Ref.current, microItem2Ref.current, microItem3Ref.current].filter(Boolean);
+        if (microItems.length > 0) {
+          gsap.set(microItems, { autoAlpha: 0, y: 6 });
+        }
+
+        const tl = gsap.timeline({
+          defaults: { ease: 'power3.out' },
+        });
+
+        if (badgeRef.current) {
+          tl.to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0);
+        }
+
+        tl.to(
+          headerRef.current,
+          {
+            filter: 'blur(0px)',
+            yPercent: 0,
+            autoAlpha: 1,
+            scale: 1,
+            duration: 0.9,
+          },
+          0.1,
+        );
+
+        if (paraRef.current) {
+          tl.to(paraRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.55');
+        }
+        if (ctaRef.current) {
+          tl.to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.35');
+        }
+        if (microItems.length > 0) {
+          tl.to(microItems, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.25');
+        }
       });
-
-      if (badgeRef.current) {
-        gsap.set(badgeRef.current, { autoAlpha: 0, y: -8 });
-      }
-      if (paraRef.current) {
-        gsap.set(paraRef.current, { autoAlpha: 0, y: 8 });
-      }
-      if (ctaRef.current) {
-        gsap.set(ctaRef.current, { autoAlpha: 0, y: 8 });
-      }
-      if (microRef.current) {
-        gsap.set(microRef.current.children, { autoAlpha: 0, y: 6 });
-      }
-
-      const tl = gsap.timeline({
-        defaults: { ease: 'power3.out' },
-      });
-
-      if (badgeRef.current) {
-        tl.to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0);
-      }
-
-      tl.to(
-        headerRef.current,
-        {
-          filter: 'blur(0px)',
-          y: 0,
-          autoAlpha: 1,
-          scale: 1,
-          duration: 0.9,
-        },
-        0.1,
-      );
-
-      if (paraRef.current) {
-        tl.to(paraRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.55');
-      }
-      if (ctaRef.current) {
-        tl.to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.35');
-      }
-      if (microRef.current) {
-        tl.to(microRef.current.children, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.25');
-      }
     },
-    { scope: sectionRef, dependencies: [isClient] },
+    { scope: sectionRef },
   );
 
   return (
     <section ref={sectionRef} className="relative h-screen w-screen overflow-hidden">
-      {isClient && <ShaderBackground />}
+      <ShaderBackground />
 
       <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-6 px-6 pb-24 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16">
         <div ref={badgeRef} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm">
@@ -350,11 +351,14 @@ export default function Hero({
         </div>
 
         <ul ref={microRef} className="mt-8 flex flex-wrap gap-6 text-xs font-extralight tracking-tight text-white/60">
-          {microDetails.map((detail, index) => (
-            <li key={index} className="flex items-center gap-2">
-              <span className="h-1 w-1 rounded-full bg-white/40" /> {detail}
-            </li>
-          ))}
+          {microDetails.map((detail, index) => {
+            const refMap = [microItem1Ref, microItem2Ref, microItem3Ref];
+            return (
+              <li key={index} ref={refMap[index]} className="flex items-center gap-2">
+                <span className="h-1 w-1 rounded-full bg-white/40" /> {detail}
+              </li>
+            );
+          })}
         </ul>
       </div>
 
