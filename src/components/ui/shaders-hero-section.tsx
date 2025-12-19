@@ -32,18 +32,46 @@ export function ShaderBackground({ children }: ShaderBackgroundProps) {
   }, [])
 
   return (
-    <div ref={containerRef} className="min-h-screen w-full relative overflow-hidden">
-      {/* Background Shaders - Cores Biomo (Roxo) */}
-      <MeshGradient
-        className="absolute inset-0 w-full h-full"
-        colors={["#000000", "#a800d2", "#7b00a0", "#c86bdb", "#1a0020"]}
-        speed={0.3}
-      />
-      <MeshGradient
-        className="absolute inset-0 w-full h-full opacity-50"
-        colors={["#000000", "#ffffff", "#a800d2", "#000000"]}
-        speed={0.2}
-      />
+    <div ref={containerRef} className="min-h-screen w-full relative overflow-hidden" style={{ background: 'radial-gradient(ellipse at center, #5a0073 0%, #1a0020 50%, #000000 100%)' }}>
+      {/* Background Shaders - Cores Biomo (Roxo) - Scale 150% para cobrir ultra-wide */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute"
+          style={{
+            top: '50%',
+            left: '50%',
+            width: '150vmax',
+            height: '150vmax',
+            transform: 'translate(-50%, -50%)'
+          }}
+        >
+          <MeshGradient
+            className="w-full h-full"
+            colors={["#000000", "#a800d2", "#7b00a0", "#c86bdb", "#1a0020"]}
+            speed={0.3}
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
+      </div>
+      <div className="absolute inset-0 overflow-hidden opacity-50">
+        <div
+          className="absolute"
+          style={{
+            top: '50%',
+            left: '50%',
+            width: '150vmax',
+            height: '150vmax',
+            transform: 'translate(-50%, -50%)'
+          }}
+        >
+          <MeshGradient
+            className="w-full h-full"
+            colors={["#000000", "#ffffff", "#a800d2", "#000000"]}
+            speed={0.2}
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
+      </div>
 
       {children}
     </div>
@@ -78,6 +106,16 @@ export function HeroContent({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
+        {/* Hero Logo */}
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <img src="/assets/logo-biomo.svg" alt="Biomo" className="w-[180px] h-auto" />
+        </motion.div>
+
         {/* Badge */}
         <motion.div
           className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm mb-6"
@@ -147,8 +185,6 @@ export function HeroContent({
         </motion.ul>
       </motion.div>
 
-      {/* Bottom gradient */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
     </main>
   )
 }
@@ -156,10 +192,10 @@ export function HeroContent({
 export function Header() {
   return (
     <header className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-6 md:px-10 lg:px-16">
-      {/* Logo Placeholder */}
-      <div className="flex items-center">
-        <span className="text-white font-light text-xl tracking-tight">Biomo</span>
-      </div>
+      {/* Logo */}
+      <a href="#" className="flex items-center">
+        <img src="/assets/logo-biomo-mini.svg" alt="Biomo" className="h-8 md:h-10" />
+      </a>
 
       {/* Navigation */}
       <nav className="hidden md:flex items-center space-x-2">

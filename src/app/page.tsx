@@ -1,9 +1,10 @@
 import { ShaderBackground, HeroContent, Header } from "@/components/ui/shaders-hero-section";
+import { WhatsAppPopup } from "@/components/ui/whatsapp-popup";
 import { Monitor, TrendingUp, Target, MessageCircle, Shield, Zap, Users } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="w-screen min-h-screen flex flex-col relative bg-black">
+    <div className="w-full min-h-screen flex flex-col relative bg-black overflow-x-hidden">
       {/* Hero Section with Mesh Gradient Shader */}
       <ShaderBackground>
         <Header />
@@ -190,6 +191,73 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials Section - Avaliações Reais Google */}
+      <section className="relative z-10 py-24 px-6 md:px-10 lg:px-16 bg-gradient-to-b from-black/95 to-purple-950/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-extralight text-white mb-4 tracking-tight">
+              O que nossos clientes dizem
+            </h2>
+            <p className="text-white/60 max-w-2xl mx-auto font-light">
+              Avaliações reais do Google - Nota 5.0 ★
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Testimonial 1 */}
+            <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
+              <div className="text-yellow-400 text-xl mb-4">★★★★★</div>
+              <p className="text-white/80 text-sm font-light leading-relaxed mb-6 italic">
+                "Contratei mais de quatro empresas que prometiam resultados, mas não entregaram. Com a Biomo, as mudanças começaram em uma semana. Os clientes do Google melhoraram e depois os do Facebook também."
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-purple-600/30 flex items-center justify-center text-white text-sm font-medium">
+                  CO
+                </div>
+                <div>
+                  <div className="text-white text-sm font-medium">Cesar Oliveira</div>
+                  <div className="text-white/50 text-xs">Up Mais Imóveis</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
+              <div className="text-yellow-400 text-xl mb-4">★★★★★</div>
+              <p className="text-white/80 text-sm font-light leading-relaxed mb-6 italic">
+                "O Thiago é muito profissional e confiável. Já tive dois sites construídos por ele e nunca me arrependi! Os sites ficam maravilhosos e ele nos ajuda com dúvidas. Super profissional! Altamente recomendado!"
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-purple-600/30 flex items-center justify-center text-white text-sm font-medium">
+                  TP
+                </div>
+                <div>
+                  <div className="text-white text-sm font-medium">Talita Portela</div>
+                  <div className="text-white/50 text-xs">Local Guide Google</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
+              <div className="text-yellow-400 text-xl mb-4">★★★★★</div>
+              <p className="text-white/80 text-sm font-light leading-relaxed mb-6 italic">
+                "A equipe está fazendo um ótimo trabalho, entregando mais do que o prometido, ouvindo, processando e fornecendo um serviço rápido e excelente... está valendo a pena!"
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-purple-600/30 flex items-center justify-center text-white text-sm font-medium">
+                  SR
+                </div>
+                <div>
+                  <div className="text-white text-sm font-medium">Sidney Rodrigues</div>
+                  <div className="text-white/50 text-xs">Cliente Biomo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contato" className="relative z-10 py-24 px-6 md:px-10 lg:px-16 bg-gradient-to-b from-black/95 to-purple-950/30">
         <div className="max-w-3xl mx-auto text-center">
@@ -233,6 +301,9 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      {/* WhatsApp Popup */}
+      <WhatsAppPopup phoneNumber="5500000000000" delay={3000} />
     </div>
   );
 }

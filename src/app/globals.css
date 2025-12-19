@@ -126,3 +126,51 @@
     @apply bg-black text-white;
   }
 }
+
+/* Fix MeshGradient canvas to fill entire container - Ultra-wide fix */
+canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  border-radius: 0 !important;
+  object-fit: cover;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+/* Ensure shader containers have no rounded corners and fill space */
+[class*="mesh-gradient"],
+[class*="MeshGradient"],
+[class*="mesh-gradient"] > div,
+[class*="MeshGradient"] > div {
+  border-radius: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative;
+}
+
+/* WhatsApp Popup - Balão de Fala Fluido */
+.whatsapp-balloon {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+.whatsapp-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 0 0 16px 0;
+  transform: skewY(-15deg);
+}
