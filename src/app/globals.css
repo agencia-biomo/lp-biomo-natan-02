@@ -174,3 +174,90 @@ canvas {
   border-radius: 0 0 16px 0;
   transform: skewY(-15deg);
 }
+
+/* ===========================
+   Micro-interactions
+   =========================== */
+
+/* Button Glow Effect */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-glow:hover::before {
+  width: 300%;
+  height: 300%;
+}
+
+/* Card 3D Hover - Applied via Tailwind but with custom transition */
+.card-3d-hover {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.card-3d-hover:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  border-color: rgba(168, 0, 210, 0.4);
+  box-shadow: 0 20px 40px rgba(168, 0, 210, 0.2);
+}
+
+/* Navigation Link Underline Animation */
+.nav-link-underline {
+  position: relative;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #a800d2, #c86bdb);
+  transition: width 0.3s ease;
+}
+
+.nav-link-underline:hover::after {
+  width: 100%;
+}
+
+/* Focus Visible Styling */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #a800d2;
+  outline-offset: 2px;
+}
+
+/* Icon hover animation */
+.icon-hover-scale {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.icon-hover-scale:hover {
+  transform: scale(1.1);
+}
+
+/* Smooth gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #fff, #c86bdb, #a800d2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

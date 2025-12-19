@@ -1,36 +1,62 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { MessageCircle } from "lucide-react";
 
 interface WhatsAppPopupProps {
   phoneNumber?: string;
-  delay?: number;
+  scrollTriggerPercent?: number;
+  timeTriggerSeconds?: number;
+  message?: string;
 }
 
 export function WhatsAppPopup({
-  phoneNumber = "5500000000000",
-  delay = 3000,
+  phoneNumber = "5547996067992",
+  scrollTriggerPercent = 30,
+  timeTriggerSeconds = 15,
+  message = "Olá! Vim pelo site da Biomo e gostaria de saber mais sobre os serviços.",
 }: WhatsAppPopupProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [hasTriggered, setHasTriggered] = useState(false);
+
+  const showPopup = useCallback(() => {
+    if (!hasTriggered && !isDismissed) {
+      setIsOpen(true);
+      setHasTriggered(true);
+    }
+  }, [hasTriggered, isDismissed]);
 
   useEffect(() => {
-    setMounted(true);
-
+    // Check sessionStorage
     const wasClosed = sessionStorage.getItem("biomo_whatsapp_popup_closed");
     if (wasClosed) {
       setIsDismissed(true);
       return;
     }
 
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, delay);
+    // Trigger 1: Scroll percentage
+    const handleScroll = () => {
+      const scrollPercent =
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if (scrollPercent >= scrollTriggerPercent) {
+        showPopup();
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
 
-    return () => clearTimeout(timer);
-  }, [delay]);
+    // Trigger 2: Time on page
+    const timer = setTimeout(() => {
+      showPopup();
+    }, timeTriggerSeconds * 1000);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollTriggerPercent, timeTriggerSeconds, showPopup]);
 
   const handleClose = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -44,9 +70,7 @@ export function WhatsAppPopup({
     sessionStorage.setItem("biomo_whatsapp_popup_closed", "true");
   };
 
-  const whatsappUrl = `https://wa.me/${phoneNumber}`;
-
-  if (!mounted) return null;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
     <>
