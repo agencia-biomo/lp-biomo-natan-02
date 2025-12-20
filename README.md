@@ -1,28 +1,27 @@
-# LP Biomo v2 - Landing Page Premium com Neural Network Shader
+# LP Biomo v2 - Landing Page Premium com MeshGradient Shader
 
-Landing Page Premium para a Biomo - Agência de Marketing Digital, utilizando React, Next.js e um shader WebGL de rede neural (CPPN).
+Landing Page Premium para a Biomo - Agencia de Marketing Digital, utilizando React, Next.js 16 e shader WebGL MeshGradient.
 
-## Sobre o Projeto
+## URLs
 
-Este projeto é a segunda versão da landing page da Biomo, agora construída com tecnologias modernas:
+- **Producao:** https://lp-biomo-natan-02.web.app
+- **Firebase Console:** https://console.firebase.google.com/project/lp-biomo-natan-02
 
-- **Next.js 15** - Framework React com App Router
-- **TypeScript** - Tipagem estática
-- **Tailwind CSS v4** - Estilização utility-first
-- **Three.js + React Three Fiber** - WebGL 3D
-- **GSAP** - Animações fluidas
-- **shadcn/ui** - Componentes de UI
+## Stack Tecnologica
 
-## Diferencial: Neural Network Shader
-
-O background da landing page utiliza um shader CPPN (Compositional Pattern Producing Network) que gera padrões visuais orgânicos e hipnóticos em tempo real.
-
-### Características do Shader
-
-- Padrões gerados por rede neural
-- Animação contínua e suave
-- Alta performance com WebGL
-- Transições fluidas com GSAP
+| Tecnologia | Versao | Funcao |
+|------------|--------|--------|
+| Next.js | 16.0.10 | Framework React com App Router |
+| React | 19.2.1 | Biblioteca UI |
+| TypeScript | 5.x | Tipagem estatica |
+| Tailwind CSS | v4 | Estilizacao utility-first |
+| Three.js | 0.182.0 | WebGL 3D |
+| React Three Fiber | 9.4.2 | Three.js para React |
+| @paper-design/shaders-react | 0.0.68 | Shader MeshGradient |
+| Framer Motion | 12.23.26 | Animacoes React |
+| GSAP | 3.14.2 | Animacoes avancadas |
+| Lucide React | 0.561.0 | Icones |
+| Firebase Hosting | - | Deploy e hospedagem |
 
 ## Estrutura do Projeto
 
@@ -30,85 +29,93 @@ O background da landing page utiliza um shader CPPN (Compositional Pattern Produ
 lp-biomo-natan-02/
 ├── src/
 │   ├── app/
-│   │   ├── globals.css      # Estilos globais
-│   │   ├── layout.tsx       # Layout principal
-│   │   └── page.tsx         # Página principal
+│   │   ├── layout.tsx           # Layout principal (RSC)
+│   │   ├── page.tsx             # Pagina inicial
+│   │   ├── globals.css          # Estilos globais Tailwind
+│   │   ├── privacidade/         # Politica de privacidade
+│   │   └── termos/              # Termos de uso
 │   ├── components/
+│   │   ├── home-page-client.tsx # Componente cliente principal
 │   │   └── ui/
-│   │       └── neural-network-hero.tsx  # Componente Hero com shader
+│   │       ├── shaders-hero-section.tsx  # Hero com shader
+│   │       ├── quote-modal.tsx           # Modal de orcamento
+│   │       ├── whatsapp-popup.tsx        # WhatsApp popup
+│   │       └── animated-number.tsx       # Numeros animados
 │   └── lib/
-│       └── utils.ts         # Utilitários
+│       └── utils.ts             # Funcoes utilitarias (cn)
+├── public/
+│   └── assets/                  # Logos e imagens
+├── docs/                        # Documentacao completa
+│   ├── ARQUITETURA.md
+│   ├── COMPONENTES.md
+│   ├── ESTILOS.md
+│   ├── FUNCIONALIDADES.md
+│   ├── DEPLOY.md
+│   ├── CHANGELOG.md
+│   ├── PROCESSO_CRIATIVO.md
+│   └── DIARIO_PROMPTS.md
+├── out/                         # Build estatico exportado
 ├── package.json
-├── tailwind.config.ts
+├── next.config.ts
+├── firebase.json
 └── README.md
 ```
 
-## Seções da Landing Page
+## Funcionalidades
 
-1. **Hero** - Headline + shader background + CTAs
-2. **Serviços** - Sites, SEO, Tráfego Pago
-3. **Resultados** - Métricas e cases
-4. **Diferenciais** - Garantia, metodologia, suporte
-5. **Contato** - WhatsApp + E-mail
-6. **Footer** - Links legais
+- **Shader Background** - MeshGradient animado com cores da marca
+- **Hero Section** - Stats animados, badges interativos, CTAs
+- **Servicos** - Cards com hover 3D (TiltCard)
+- **Depoimentos** - Cards de clientes
+- **Videos** - 3 embeds Vimeo em formato vertical (9:16)
+- **FAQ** - Accordion animado
+- **Modal de Orcamento** - Wizard de 5 passos com calculo dinamico
+- **WhatsApp Popup** - Triggers por scroll e tempo
+- **Floating CTA** - Botao flutuante apos scroll
+- **Scroll Progress** - Indicador no topo
 
-## Instalação
+## Comandos
 
 ```bash
-# Clonar repositório
-git clone https://github.com/agencia-biomo/lp-biomo-natan-02.git
-cd lp-biomo-natan-02
-
-# Instalar dependências
-npm install
-
-# Rodar em desenvolvimento
+# Desenvolvimento
 npm run dev
 
-# Build para produção
-npm run build
-```
-
-## Dependências Principais
-
-- `next` - Framework React
-- `react` / `react-dom` - Biblioteca UI
-- `three` - WebGL 3D
-- `@react-three/fiber` - React renderer para Three.js
-- `@react-three/drei` - Helpers para R3F
-- `gsap` / `@gsap/react` - Animações
-- `lucide-react` - Ícones
-- `tailwindcss` - CSS
-
-## Deploy
-
-Este projeto pode ser deployado em:
-
-- **Vercel** (recomendado)
-- **Netlify**
-- **Firebase Hosting**
-
-```bash
-# Build de produção
+# Build para producao
 npm run build
 
-# Preview local
-npm run start
+# Deploy para Firebase
+npm run build && cmd.exe /c "firebase deploy --only hosting --project lp-biomo-natan-02"
+
+# Preview local do build
+npx serve out
 ```
 
 ## Cores da Marca
 
 | Cor | Hex | Uso |
 |-----|-----|-----|
-| Roxo Principal | `#a800d2` | Cor primária, destaques |
+| Roxo Principal | `#a800d2` | Cor primaria, destaques |
 | Roxo Escuro | `#7b00a0` | Gradientes |
 | Roxo Claro | `#c86bdb` | Hover, accents |
 | Preto | `#000000` | Background |
 | Branco | `#ffffff` | Textos |
 
-## Licença
+## Documentacao
 
-Projeto proprietário - Biomo Agência de Marketing Digital
+Consulte a pasta `/docs` para documentacao detalhada:
+
+- [Arquitetura](docs/ARQUITETURA.md) - Stack e estrutura
+- [Componentes](docs/COMPONENTES.md) - Documentacao de componentes
+- [Estilos](docs/ESTILOS.md) - Sistema de design
+- [Funcionalidades](docs/FUNCIONALIDADES.md) - Features implementadas
+- [Deploy](docs/DEPLOY.md) - Instrucoes de deploy
+- [Changelog](docs/CHANGELOG.md) - Historico de versoes
+- [Processo Criativo](docs/PROCESSO_CRIATIVO.md) - Decisoes de design
+- [Diario de Prompts](docs/DIARIO_PROMPTS.md) - Metodologia de desenvolvimento
+
+## Licenca
+
+Projeto proprietario - Biomo Agencia de Marketing Digital
 
 ---
 
