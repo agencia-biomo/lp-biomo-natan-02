@@ -508,7 +508,7 @@ export function HomePageClient() {
                   />
                 </div>
                 <div className="p-4 sm:p-5">
-                  <h4 className="text-base sm:text-lg font-light text-white mb-1">VM Eventos</h4>
+                  <a href="https://vmevento.com.br/" target="_blank" rel="noopener noreferrer" className="text-base sm:text-lg font-light text-white mb-1 block hover:text-purple-400 transition-colors">VM Eventos</a>
                   <p className="text-white/50 text-xs sm:text-sm font-light">Depoimento de cliente satisfeito</p>
                 </div>
               </div>
@@ -528,7 +528,7 @@ export function HomePageClient() {
                   />
                 </div>
                 <div className="p-4 sm:p-5">
-                  <h4 className="text-base sm:text-lg font-light text-white mb-1">Med Menosso</h4>
+                  <a href="https://institutomedmenosso.com.br/" target="_blank" rel="noopener noreferrer" className="text-base sm:text-lg font-light text-white mb-1 block hover:text-purple-400 transition-colors">Med Menosso</a>
                   <p className="text-white/50 text-xs sm:text-sm font-light">Depoimento de cliente satisfeito</p>
                 </div>
               </div>
@@ -548,7 +548,7 @@ export function HomePageClient() {
                   />
                 </div>
                 <div className="p-4 sm:p-5">
-                  <h4 className="text-base sm:text-lg font-light text-white mb-1">Eliore Studio</h4>
+                  <a href="https://eliorestudio.com.br/" target="_blank" rel="noopener noreferrer" className="text-base sm:text-lg font-light text-white mb-1 block hover:text-purple-400 transition-colors">Eliore Studio</a>
                   <p className="text-white/50 text-xs sm:text-sm font-light">Depoimento de cliente satisfeito</p>
                 </div>
               </div>
