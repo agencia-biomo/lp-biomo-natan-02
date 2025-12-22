@@ -200,13 +200,13 @@ export function HomePageClient() {
         {/* Hero Section */}
         <Header />
         <HeroContent
-          title="Transformamos sua presença digital em resultados reais"
-          description="Agência de Marketing Digital Full Service com Garantia Total de satisfação. Sites profissionais, SEO e Tráfego Pago que convertem."
-          badgeText="Marketing Digital"
-          badgeLabel="Biomo"
+          title="Criação de Sites de Alta Conversão"
+          description="Sites profissionais que vendem. Desenvolvemos sites institucionais, landing pages e lojas virtuais otimizadas para Google — entrega em 7 dias com garantia de resultado."
+          badgeText="Agência de Sites"
+          badgeLabel="⭐ 5.0/5 Google"
           ctaButtons={[
-            { text: "Solicitar Orçamento", onClick: () => setIsQuoteModalOpen(true), primary: true },
-            { text: "Ver Resultados", href: "#resultados" }
+            { text: "Criar Meu Site Agora", onClick: () => setIsQuoteModalOpen(true), primary: true },
+            { text: "Ver Portfólio", href: "#resultados" }
           ]}
         />
 
@@ -215,13 +215,13 @@ export function HomePageClient() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 sm:mb-12 md:mb-16">
             <h2 id="servicos-titulo" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight text-white mb-3 sm:mb-4 tracking-tight">
-              Nossos Serviços
+              Sites Profissionais Para Sua Empresa
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto font-light text-sm sm:text-base px-2">
-              Soluções completas para transformar sua presença digital e gerar resultados mensuráveis.
+              Do site institucional à loja virtual. Criamos sites que geram resultados reais para seu negócio.
             </p>
             <p className="mt-2 sm:mt-3 text-purple-400 font-semibold text-base sm:text-lg">
-              A partir de R$ 993
+              A partir de R$ 997
             </p>
           </div>
 

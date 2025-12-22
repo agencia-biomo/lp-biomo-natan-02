@@ -8,20 +8,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Biomo - Agência de Marketing Digital | Sites, SEO & Tráfego Pago",
-  description: "Biomo - Agência de Marketing Digital Full Service. Criação de Sites Profissionais, SEO e Tráfego Pago com Garantia Total.",
-  keywords: "agência digital, marketing digital, criação de sites, SEO, tráfego pago, Google Ads, Meta Ads",
-  authors: [{ name: "Biomo Agência" }],
+  title: "Criação de Sites de Alta Conversão | Biomo Agência de Sites",
+  description: "Criação de sites profissionais que vendem. Sites institucionais, landing pages e lojas virtuais otimizados para Google. Entrega em 7 dias. A partir de R$997.",
+  keywords: "criação de sites, criar site profissional, site institucional, landing page, loja virtual, agência de sites, fazer site, site para empresa, site de alta conversão",
+  authors: [{ name: "Biomo Agência de Sites" }],
   openGraph: {
-    title: "Biomo - Agência de Marketing Digital",
-    description: "Transformamos sua presença digital em resultados reais. Sites profissionais, SEO e Tráfego Pago.",
+    title: "Criação de Sites de Alta Conversão | Biomo",
+    description: "Sites profissionais que vendem. Entrega em 7 dias com garantia de resultado.",
     type: "website",
     url: "https://biomo.com.br",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Biomo - Agência de Marketing Digital",
-    description: "Transformamos sua presença digital em resultados reais.",
+    title: "Criação de Sites Profissionais | Biomo",
+    description: "Sites institucionais, landing pages e lojas virtuais. A partir de R$997.",
   },
 };
 
