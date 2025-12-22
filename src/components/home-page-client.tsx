@@ -614,6 +614,10 @@ export function HomePageClient() {
       {/* Footer */}
       <footer className="relative py-8 sm:py-10 px-5 sm:px-6 border-t border-white/10">
         <div className="max-w-7xl mx-auto text-center">
+          {/* Google Partner Badge */}
+          <a href="https://www.google.com/partners/agency?id=8946336424" target="_blank" rel="noopener noreferrer" className="inline-block mb-4 sm:mb-6">
+            <img src="https://www.gstatic.com/partners/badge/images/2025/PartnerBadgeClickable.svg" alt="Google Partner" className="h-12 sm:h-16" />
+          </a>
           <p className="text-white/50 text-xs sm:text-sm font-light mb-1.5 sm:mb-2">
             Balneário Camboriú - SC, Brasil
           </p>
